@@ -464,6 +464,259 @@ Next, investigate:
 
 ---
 
+## 13. Common Network Commands
+
+These commands are useful for checking network configuration, connectivity, DNS ,and ports.
+
+### inconfig
+
+Used to view and manage network configuration on Windows.
+
+```powershell
+ipconfig
+```
+
+Shows basic information such as:
+- IPv4 address
+- subnet mask
+- Default gateway
+
+To see more detailed information:
+
+```powershell
+inconfig /all
+```
+
+#### Usedful commands
+
+Release the current DHCP address:
+
+```powershell
+ipconfig /release
+```
+
+Request a new DHCP address:
+
+```powershell
+inconfig /renew
+```
+
+Clear the DNS cache:
+
+```powershell
+ipconfig /flushdns
+```
+
+> **Remember**  
+> ipconfig      → Check IP configuration  
+> ipconfig /all → Detailed configuration  
+> /renew        → Request a new DHCP address  
+> /flushdns     → Clear DNS cache
+
+---
+
+### ping
+
+Used to test basic network connectivity to a destination.
+
+Example:
+
+```powershell
+ping 192.168.1.50
+```
+
+You can also test a hostname:
+
+```powershell
+ping server.company.com
+```
+
+#### Important
+
+A successful ping does not prove that a specific application or port is working.
+
+For example:
+
+```text
+ping server.company.com
+→ Works
+
+Test-NetConnection server.company.com -Port 443
+→ Fails
+```
+
+The server is reachable, but TCP port 443 may be unavailable or blocked.
+
+---
+
+### nslookup
+
+Used to test DNS name resolution.
+
+Example:
+
+```powershell
+nslookup server.company.com
+```
+
+It can show which IP address a shotname resolves to.
+
+> **Remember**  
+> nslookup = check DNS resolution
+
+---
+
+### tracert
+
+Used to show the path that traffic takes toward a destination.
+
+Example:
+
+```powershell
+tracert google.com
+```
+
+It can help identify where traffic may be falling or being delayed along the route.
+
+> **Remember**  
+> tracert = trace the network path
+
+---
+
+### Test-NetConnection
+
+A useful PowerShell command for testing network connectivity and TCP ports.
+
+Example:
+
+```powershell
+TestNetConnection server.company.com -Port 443
+```
+
+If:
+
+```text
+TcpTestSucceeded : True
+```
+
+The TCP connection to the port succeeded.
+
+If:
+
+```text
+TcpTestSucceeded : False
+```
+
+The TCP connection failed.
+
+> **Remember**  
+> ping               → Basic connectivity  
+> nslookup           → DNS resolution  
+> Test-NetConnection → TCP/port connectivity  
+> tracert            → Network path
+
+---
+
+## 14. Basic Networking Troubleshooting
+
+When troubleshooting, use the evidence from each test to narrow down the problem.
+
+### Example 1: DNS Problem
+
+```text
+ping 8.8.8.8
+→ Works
+
+nslookup google.com
+→ Fails
+```
+
+Possible issue: **DNS/name resolution**
+
+---
+
+### Example 2: Port Problem
+
+```text
+ping 192.168.1.50
+→ Works
+
+Test-NetConnection 192.168.1.50 -Port 443
+→ Fails
+```
+
+Possible cause:
+- Firewall blocking port 443
+- Service is not listening on port 443
+- Network security rule
+- Wrong port
+- Server/application configuration
+
+---
+
+### Example 3: DHCP Problem
+
+The computer has:
+
+```text
+169.254.x.x
+```
+
+Possible issue:
+
+The computer could not obtain an IP address from DHCP and assigned itself an APIPA address.
+
+Things to ivestigate:
+- Network connection
+- DHCP server
+- DHCP availability
+- Network adapter
+- VLAN/network configuration
+
+---
+
+### Example 4: One User Cannot Connect
+
+Suppose:
+
+```text
+User A → Application work
+User B → Application dows not work
+```
+
+This suggest the problem may be specific ti User B's:
+- Computer
+- Network configuration
+- Firewall
+- DNS configuration
+- User/account
+- Application configuration
+
+Don't immediately assume the server is down.
+
+---
+
+### Example 5: Everyone Cannot Connect
+
+Suppose:
+
+```text
+User A → x
+User B → X
+User C → X
+```
+
+Now investigate problems that could affect multiple users:
+- Server/service
+- Network infrastructure
+- Firewall
+- DNS
+- Database
+- Application
+- Shared infrastructure
+
+---
+
 ## Networking Quick Reference
 
 | Concept | Main Purpose |
