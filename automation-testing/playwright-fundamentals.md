@@ -473,33 +473,123 @@ Each test should ideally be independent.
 
 ## 14. Running Tests
 
-Run all Playwright tests:
+### Run all tests:
 
 ```node
 npx playwright test
 ```
 
-Run tests with browser visible:
+Run all tests in headless mode by deafult.
+
+### Run with browser visible:
 
 ```node
 npx playwright test --headed
 ```
 
-Run using Playwright UI Mode:
+Useful when watching the test execute.
+
+### Run in UI Mode:
 
 ```node
 npx playwright test --ui
 ```
 
-Run a specific test file:
+Opens Playwright interactive UI for running and debugging tests.
+
+### Run with trace
+
+```node
+npx playwright test --trace=on
+```
+
+Records a trace that can be inspected after the test.
+
+### Run a specific test file:
 
 ```node
 npx playwright test tests/example.spec.ts
 ```
 
+### Run a specific test by name:
+
+```node
+npx playwright test -g "login"
+```
+
+### Run a specific browser/project:
+
+```node
+npx playwright test --project=chromium
+```
+
+### Run in debug mode:
+
+```node
+npx playwright test --debug
+```
+
+Useful for stepping through a test while debugging.
+
+### Run with browser visible + trace
+
+```node
+npx playwright test --headed --trace=on
+```
+
 ---
 
-## 15. Useful Mental Model
+## 15. Codegen
+
+Playwright Codegen opens a browser and records interactions to generate Playwright code.
+
+```node
+npx playwright codegen https://example.com
+```
+
+The browser opens and Playwright generates a code as you interact with the website.
+
+### Useful Examples
+
+Open Codegen:
+
+```node
+npx playwright codegen
+```
+
+Open a specific website:
+
+```node
+npx playwright condegen https://example.com
+```
+
+Generate TypeScript:
+
+```node
+npx playwright codegen --target=playwright-test https://example.com
+```
+
+### Typical workflow
+
+```text
+    Open codegen
+          ↓
+Interact with website
+          ↓
+Playwright generate locators/actions
+          ↓
+Review generated code
+          ↓
+Copy useful parts into test
+          ↓
+Clean/refactor the code
+```
+
+> Codegen is useful for discovering locators and getting started quickly, but generated code should still be reviewed and clean up.
+
+---
+
+## 16. Useful Mental Model
 
 When writing Playwright automation, think:
 
@@ -535,7 +625,7 @@ expect(...).toHaveValue('Amir')
 
 ---
 
-## 16. Core Syntax to Remember
+## 17. Core Syntax to Remember
 
 ```ts
 // Define a test
