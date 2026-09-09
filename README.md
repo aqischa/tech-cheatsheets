@@ -4,6 +4,10 @@ My personal technical reference for Systems Engineering, DevOps, Automation, Pro
 
 ## Topics
 
+### Automation & Testing
+
+- [Playwright Fundamentals](automation-testing/playwright-fundamentals.md)
+
 ### Systems Engineering
 
 - [Networking Fundamentals](networking/networking-fundamentals.md)
@@ -15,7 +19,3 @@ My personal technical reference for Systems Engineering, DevOps, Automation, Pro
 ### Programming
 
 - Coming soon
-
-### Automation & Testing
-
-- Coming Soon

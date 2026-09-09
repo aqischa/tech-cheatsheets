@@ -1,5 +1,27 @@
 # Playwright Fundamentals
 
+## Table of Contents
+
+- [Basic Test Structure](#1-basic-test-structure)
+- [Actions vs Assertions](#2-actions-vs-assertions)
+- [`expect()`](#3-expect)
+- [Locators](#4-locators)
+- [`getByRole()`](#5-getbyrole)
+- [`getByLabel()`](#6-getbylabel)
+- [`getByText()`](#7-getbytext)
+- [`locator()`](#8-locator)
+- [Filling Input Fields](#9-filling-input-fields)
+- [Clicking Elements](#10-clicking-elements)
+- [Simple Login Flow](#11-example-simple-login-flow)
+- [Test Anatomy](#12-test-anatomy)
+- [Multiple Tests](#13-multiple-tests)
+- [Running Tests](#14-running-tests)
+- [Codegen](#15-codegen)
+- [Useful Mental Model](#16-useful-mental-model)
+- [Core Syntax to Remember](#17-core-syntax-to-remember)
+
+---
+
 ## 1. Basic Test Structure
 
 ```ts
